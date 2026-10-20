@@ -56,8 +56,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md py-3 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-neutral-950/45 sm:bg-neutral-950/40 border-b border-white/[0.12] py-2.5 sm:py-3 transition-all duration-300 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]">
+      {/* Frosted Glass Specular Sheen */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.07] via-white/[0.015] to-transparent pointer-events-none" />
+      
+      {/* Subtle Amber Light Line along glass bottom edge */}
+      <div className="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-400/35 to-transparent pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center justify-between">
           
           {/* Logo on the LEFT SIDE and made larger */}
@@ -72,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                   <img
                     src={CLUB_CONFIG.logoFormal}
                     alt="Logo TRABAS"
-                    className="max-w-full max-h-full object-contain filter drop-shadow-[0_4px_16px_rgba(250,204,21,0.25)]"
+                    className="max-w-full max-h-full object-contain filter drop-shadow-[0_4px_16px_rgba(250,204,21,0.3)]"
                     referrerPolicy="no-referrer"
                     onError={() => setLogoError(true)}
                   />
@@ -83,8 +89,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             </button>
           </div>
 
-          {/* Desktop Navigation with Hover Dropdowns */}
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Desktop Navigation with Frosted Glass Hover Dropdowns */}
+          <nav className="hidden md:flex items-center gap-2 lg:gap-4">
             {menuItems.map((item) => {
               const isActive = currentPage === item.path;
               const hasSub = item.subMenus && item.subMenus.length > 0;
@@ -93,10 +99,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                 <div key={item.label} className="relative group py-2">
                   <button
                     onClick={() => handleItemClick(item.path)}
-                    className={`text-xs uppercase tracking-wider font-semibold transition-colors flex items-center gap-1 cursor-pointer ${
+                    className={`text-xs uppercase tracking-wider font-semibold transition-all flex items-center gap-1.5 cursor-pointer px-3.5 py-1.5 rounded-xl ${
                       isActive
-                        ? 'text-amber-400 font-bold'
-                        : 'text-neutral-300 hover:text-amber-400'
+                        ? 'text-amber-400 font-bold bg-amber-400/10 border border-amber-400/25 shadow-[0_0_15px_rgba(250,204,21,0.15)]'
+                        : 'text-neutral-300 hover:text-white hover:bg-white/[0.08] border border-transparent'
                     }`}
                   >
                     <span>{item.label}</span>
@@ -105,10 +111,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                     )}
                   </button>
 
-                  {/* Dropdown Menu on Hover */}
+                  {/* Frosted Glass Dropdown Menu on Hover */}
                   {hasSub && (
                     <div className="absolute top-full left-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                      <div className="w-48 bg-neutral-950/95 border border-neutral-800 rounded-xl shadow-2xl p-2 backdrop-blur-xl flex flex-col gap-1">
+                      <div className="w-52 bg-neutral-950/80 backdrop-blur-2xl border border-white/[0.12] rounded-2xl shadow-[0_16px_40px_rgba(0,0,0,0.8)] p-2 flex flex-col gap-1 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.05] to-transparent pointer-events-none" />
                         {item.subMenus!.map((sub) => (
                           <button
                             key={sub.label}
@@ -116,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                               e.stopPropagation();
                               handleItemClick(item.path, sub.subTab);
                             }}
-                            className="px-3 py-2 text-left text-xs text-neutral-300 hover:text-black hover:bg-amber-400 rounded-lg transition-colors font-medium"
+                            className="relative z-10 px-3 py-2 text-left text-xs text-neutral-300 hover:text-black hover:bg-amber-400 rounded-xl transition-all font-medium active:scale-98"
                           >
                             {sub.label}
                           </button>
@@ -130,17 +137,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
             <button
               onClick={() => handleItemClick('/keanggotaan', 'pendaftaran')}
-              className="px-5 py-2 text-xs font-bold uppercase tracking-wider text-black bg-amber-400 rounded-lg hover:bg-amber-300 active:scale-95 transition-all shadow-md shadow-amber-400/20 ml-2"
+              className="px-5 py-2 text-xs font-bold uppercase tracking-wider text-black bg-amber-400 rounded-xl hover:bg-amber-300 active:scale-95 transition-all shadow-lg shadow-amber-400/25 ml-2 border border-amber-300/40"
             >
               Daftar
             </button>
           </nav>
 
-          {/* Mobile hamburger */}
+          {/* Mobile hamburger with glass button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-neutral-300 hover:text-amber-400 hover:bg-neutral-900 rounded-lg"
+              className="p-2 text-neutral-300 hover:text-amber-400 hover:bg-white/[0.08] border border-white/10 rounded-xl transition-colors backdrop-blur-md"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -148,17 +155,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </div>
         </div>
 
-        {/* Mobile menu dropdown with submenus */}
+        {/* Mobile menu dropdown with frosted glass */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 p-4 bg-neutral-950 border border-neutral-800 rounded-xl shadow-2xl backdrop-blur-xl">
-            <div className="flex flex-col gap-2">
+          <div className="md:hidden mt-3 p-4 bg-neutral-950/85 border border-white/[0.12] rounded-2xl shadow-2xl backdrop-blur-2xl relative overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+            <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent pointer-events-none" />
+            <div className="relative z-10 flex flex-col gap-2">
               {menuItems.map((item) => {
                 const isActive = currentPage === item.path;
                 const hasSub = item.subMenus && item.subMenus.length > 0;
                 const isExpanded = expandedMobileMenu === item.label;
 
                 return (
-                  <div key={item.label} className="border-b border-neutral-900 last:border-none pb-2">
+                  <div key={item.label} className="border-b border-white/[0.08] last:border-none pb-2">
                     <div className="flex items-center justify-between">
                       <button
                         onClick={() => handleItemClick(item.path)}
@@ -184,7 +192,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
                     {/* Mobile Submenu Accordion */}
                     {hasSub && isExpanded && (
-                      <div className="pl-3 py-1 flex flex-col gap-1.5 border-l-2 border-amber-400/30 my-1">
+                      <div className="pl-3 py-1 flex flex-col gap-1.5 border-l-2 border-amber-400/40 my-1 bg-white/[0.02] rounded-r-lg">
                         {item.subMenus!.map((sub) => (
                           <button
                             key={sub.label}
@@ -203,7 +211,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               <div className="pt-2">
                 <button
                   onClick={() => handleItemClick('/keanggotaan', 'pendaftaran')}
-                  className="w-full py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-black bg-amber-400 rounded-lg hover:bg-amber-300 transition-all text-center"
+                  className="w-full py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-black bg-amber-400 rounded-xl hover:bg-amber-300 transition-all text-center shadow-lg shadow-amber-400/20 font-semibold"
                 >
                   Daftar Anggota
                 </button>

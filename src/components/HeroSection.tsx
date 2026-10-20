@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CLUB_CONFIG } from '../data/clubData';
 import { MapPin } from 'lucide-react';
 
@@ -7,8 +7,6 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenRegister }) => {
-  const [headingLogoError, setHeadingLogoError] = useState(false);
-
   return (
     <section className="relative min-h-[75vh] flex flex-col justify-center pt-36 sm:pt-40 pb-16 overflow-hidden bg-black">
       {/* Background Court Image */}
@@ -24,17 +22,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenRegister }) => {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto text-center flex flex-col items-center">
         
-        {/* Large Headline Logo - Tanpa Border, Lebih Besar, Bersih */}
-        <div className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl flex items-center justify-center mb-6">
-          {!headingLogoError ? (
-            <img
-              src={CLUB_CONFIG.logoHeading}
-              alt="TRABAS"
-              className="w-full h-auto object-contain filter drop-shadow-[0_4px_30px_rgba(250,204,21,0.25)]"
-              referrerPolicy="no-referrer"
-              onError={() => setHeadingLogoError(true)}
-            />
-          ) : null}
+        {/* Large Headline Logo */}
+        <div className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl mb-6 flex justify-center">
+          <img
+            src={CLUB_CONFIG.logoHeading}
+            alt="TRABAS Logo"
+            className="w-full h-auto max-h-[220px] sm:max-h-[300px] md:max-h-[360px] object-contain drop-shadow-[0_10px_35px_rgba(250,204,21,0.25)]"
+            referrerPolicy="no-referrer"
+          />
         </div>
 
         {/* Tulisan TRABAS dengan SANTARA BASKETBALL SUMBAWA di bawahnya */}

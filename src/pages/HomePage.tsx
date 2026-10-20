@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { CLUB_CONFIG, SCHEDULES } from '../data/clubData';
+import { CLUB_CONFIG } from '../data/clubData';
 import { SlideBanner } from '../components/SlideBanner';
+import { FaqSection } from '../components/FaqSection';
 import { MapPin, ArrowRight, Target, Calendar, UserCheck, ExternalLink, Home } from 'lucide-react';
 
 interface HomePageProps {
@@ -8,25 +9,29 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
-  const [headingLogoError, setHeadingLogoError] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   return (
-    <div className="pt-28 pb-20">
+    <div className="pt-28 pb-10">
       
       {/* Hero Headline Section */}
       <section className="relative min-h-[64vh] flex flex-col justify-center items-center text-center px-4 sm:px-6 lg:px-8 mb-6">
         
-        {/* Large Headline Logo - Tanpa Border, Lebih Besar, Bersih */}
-        <div className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl flex items-center justify-center mb-6">
-          {!headingLogoError ? (
+        {/* Large Headline Logo - Static Clean Image without animation */}
+        <div className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl mb-6 flex justify-center">
+          {!logoError ? (
             <img
               src={CLUB_CONFIG.logoHeading}
-              alt="TRABAS"
-              className="w-full h-auto object-contain filter drop-shadow-[0_4px_35px_rgba(250,204,21,0.25)]"
+              alt="TRABAS Logo"
+              className="w-full h-auto max-h-[220px] sm:max-h-[300px] md:max-h-[360px] object-contain drop-shadow-[0_10px_35px_rgba(250,204,21,0.25)]"
               referrerPolicy="no-referrer"
-              onError={() => setHeadingLogoError(true)}
+              onError={() => setLogoError(true)}
             />
-          ) : null}
+          ) : (
+            <div className="font-display text-5xl sm:text-7xl font-black text-amber-400 uppercase tracking-wider py-8">
+              TRABAS
+            </div>
+          )}
         </div>
 
         {/* Tulisan TRABAS dengan SANTARA BASKETBALL SUMBAWA di bawahnya */}
@@ -236,6 +241,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         </div>
       </section>
+
+      {/* 10 Pertanyaan FAQ di Atas Footer */}
+      <FaqSection />
 
     </div>
   );

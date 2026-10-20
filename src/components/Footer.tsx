@@ -96,9 +96,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               onNavigate('/keanggotaan', 'pendaftaran');
               scrollToTop();
             }}
-            className="text-amber-400 font-semibold hover:underline"
+            className="hover:text-amber-400 transition-colors"
           >
             Pendaftaran
+          </button>
+          <span className="text-neutral-700 hidden sm:inline">•</span>
+          <button
+            onClick={() => {
+              onNavigate('/');
+              setTimeout(() => {
+                document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
+            }}
+            className="text-amber-400 font-semibold hover:underline"
+          >
+            FAQ
           </button>
         </div>
 

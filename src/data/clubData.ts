@@ -93,9 +93,9 @@ export const PLAYERS: PlayerProfile[] = [
   },
   {
     name: 'Jacko',
-    number: '9',
+    number: '13',
     position: 'Shooting Guard (SG)',
-    height: '162 cm',
+    height: '173 cm',
     hand: 'Tangan Kanan',
     favoriteStyle: 'Catch and Shoot 3-Point Sniper',
   },
@@ -106,6 +106,14 @@ export const PLAYERS: PlayerProfile[] = [
     height: '170 cm',
     hand: 'Tangan Kanan',
     favoriteStyle: 'Under Basket Layup & Offensive Rebound',
+  },
+  {
+    name: 'Putra',
+    number: '8',
+    position: 'Shooting Guard (SG)',
+    height: '162 cm',
+    hand: 'Tangan Kanan',
+    favoriteStyle: 'Perimeter Shooting & Fastbreak Drive',
   },
 ];
 
