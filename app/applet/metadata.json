@@ -1,0 +1,6 @@
+{
+  "name": "TRABAS Basketball Club",
+  "description": "Website Resmi TRABAS Basketball Club - Pendaftaran Anggota Online via WhatsApp, Jadwal Latihan Mingguan, Galeri Kegiatan, Hasil Pertandingan, dan 3D Jersey Showcase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

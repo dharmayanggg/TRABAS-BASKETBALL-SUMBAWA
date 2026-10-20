@@ -1,0 +1,6 @@
+{
+  "name": "TRABAS (Santara Basketball Sumbawa)",
+  "description": "Website Resmi TRABAS (Santara Basketball Sumbawa) - Jadwal Latihan, Hasil Pertandingan, Galeri, dan Pendaftaran Anggota Online.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
