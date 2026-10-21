@@ -5,6 +5,8 @@ import bannerSlide1 from '../assets/images/banner_slide_1.jpeg';
 import bannerSlide2 from '../assets/images/banner_slide_2.jpeg';
 import bannerSlide3 from '../assets/images/banner_heading.png';
 
+import { LOGO_FORMAL_BASE64, LOGO_HEADING_BASE64 } from './logoBase64';
+
 export interface PlayerProfile {
   name: string;
   number: string;
@@ -39,8 +41,13 @@ export const CLUB_CONFIG = {
       mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Gallery+Arena+Pantai+Baru+Sumbawa',
     },
   ],
-  logoFormal: logoFormalImg || '/images/logo_formal_trabas.png',
-  logoHeading: logoHeadingImg || '/images/logo_heading_trabas.png',
+  // Use embedded high-res Base64 for 100% reliability on Vercel and zero 404/broken links
+  logoFormal: LOGO_FORMAL_BASE64,
+  logoFormalAsset: logoFormalImg || '/images/logo_formal_trabas.png',
+  logoFormalBase64: LOGO_FORMAL_BASE64,
+  logoHeading: LOGO_HEADING_BASE64,
+  logoHeadingAsset: logoHeadingImg || '/images/logo_heading_trabas.png',
+  logoHeadingBase64: LOGO_HEADING_BASE64,
   heroBg: heroBgImg || '/images/hero_trabas_basketball_court_1792485108425.jpg',
 };
 

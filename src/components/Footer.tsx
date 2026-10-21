@@ -32,8 +32,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 className="max-w-full max-h-full object-contain filter drop-shadow-[0_4px_24px_rgba(250,204,21,0.25)]"
                 referrerPolicy="no-referrer"
                 onError={(e) => {
-                  if (!e.currentTarget.src.endsWith('/images/logo_formal_trabas.png')) {
-                    e.currentTarget.src = '/images/logo_formal_trabas.png';
+                  if (e.currentTarget.src !== CLUB_CONFIG.logoFormalBase64) {
+                    e.currentTarget.src = CLUB_CONFIG.logoFormalBase64;
                   }
                 }}
               />

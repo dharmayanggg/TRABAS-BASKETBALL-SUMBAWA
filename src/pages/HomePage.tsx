@@ -26,8 +26,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               className="w-full h-auto max-h-[220px] sm:max-h-[300px] md:max-h-[360px] object-contain drop-shadow-[0_10px_35px_rgba(250,204,21,0.25)]"
               referrerPolicy="no-referrer"
               onError={(e) => {
-                if (!e.currentTarget.src.endsWith('/images/logo_heading_trabas.png')) {
-                  e.currentTarget.src = '/images/logo_heading_trabas.png';
+                if (e.currentTarget.src !== CLUB_CONFIG.logoHeadingBase64) {
+                  e.currentTarget.src = CLUB_CONFIG.logoHeadingBase64;
                 } else {
                   setLogoError(true);
                 }
