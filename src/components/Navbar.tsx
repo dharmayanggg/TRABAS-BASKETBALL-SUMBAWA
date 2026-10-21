@@ -80,7 +80,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                     alt="Logo TRABAS"
                     className="max-w-full max-h-full object-contain filter drop-shadow-[0_4px_16px_rgba(250,204,21,0.3)]"
                     referrerPolicy="no-referrer"
-                    onError={() => setLogoError(true)}
+                    onError={(e) => {
+                      if (!e.currentTarget.src.endsWith('/images/logo_formal_trabas.png')) {
+                        e.currentTarget.src = '/images/logo_formal_trabas.png';
+                      } else {
+                        setLogoError(true);
+                      }
+                    }}
                   />
                 ) : (
                   <span className="font-display font-bold text-amber-400 text-2xl">TRABAS</span>

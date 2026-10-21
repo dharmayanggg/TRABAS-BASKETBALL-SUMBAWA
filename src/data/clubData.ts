@@ -1,3 +1,10 @@
+import logoFormalImg from '../assets/images/logo_formal_trabas.png';
+import logoHeadingImg from '../assets/images/logo_heading_trabas.png';
+import heroBgImg from '../assets/images/hero_trabas_basketball_court_1792485108425.jpg';
+import bannerSlide1 from '../assets/images/banner_slide_1.jpeg';
+import bannerSlide2 from '../assets/images/banner_slide_2.jpeg';
+import bannerSlide3 from '../assets/images/banner_heading.png';
+
 export interface PlayerProfile {
   name: string;
   number: string;
@@ -32,26 +39,26 @@ export const CLUB_CONFIG = {
       mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Gallery+Arena+Pantai+Baru+Sumbawa',
     },
   ],
-  logoFormal: '/src/assets/images/logo_formal_trabas.png',
-  logoHeading: '/src/assets/images/logo_heading_trabas.png',
-  heroBg: '/src/assets/images/hero_trabas_basketball_court_1792485108425.jpg',
+  logoFormal: logoFormalImg || '/images/logo_formal_trabas.png',
+  logoHeading: logoHeadingImg || '/images/logo_heading_trabas.png',
+  heroBg: heroBgImg || '/images/hero_trabas_basketball_court_1792485108425.jpg',
 };
 
-// 3 Slide Banner Images (Local fast cache with GitHub Raw fallback)
+// 3 Slide Banner Images (Vite bundled with public /images/ and GitHub Raw fallback)
 export const BANNER_SLIDES = [
   {
     id: 'slide-1',
-    image: '/src/assets/images/banner_slide_1.jpeg',
+    image: bannerSlide1 || '/images/banner_slide_1.jpeg',
     fallback: 'https://raw.githubusercontent.com/dharmayanggg/TRABAS-FILE/main/IMG-20261010-WA0024%20(1).jpeg',
   },
   {
     id: 'slide-2',
-    image: '/src/assets/images/banner_slide_2.jpeg',
+    image: bannerSlide2 || '/images/banner_slide_2.jpeg',
     fallback: 'https://raw.githubusercontent.com/dharmayanggg/TRABAS-FILE/main/IMG20261020173641.jpg.jpeg',
   },
   {
     id: 'slide-3',
-    image: '/src/assets/images/banner_heading.png',
+    image: bannerSlide3 || '/images/banner_heading.png',
     fallback: 'https://raw.githubusercontent.com/dharmayanggg/TRABAS-FILE/main/Add%20a%20heading.png',
   },
 ];

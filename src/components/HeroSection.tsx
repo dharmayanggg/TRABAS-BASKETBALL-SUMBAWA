@@ -29,6 +29,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenRegister }) => {
             alt="TRABAS Logo"
             className="w-full h-auto max-h-[220px] sm:max-h-[300px] md:max-h-[360px] object-contain drop-shadow-[0_10px_35px_rgba(250,204,21,0.25)]"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              if (!e.currentTarget.src.endsWith('/images/logo_heading_trabas.png')) {
+                e.currentTarget.src = '/images/logo_heading_trabas.png';
+              }
+            }}
           />
         </div>
 

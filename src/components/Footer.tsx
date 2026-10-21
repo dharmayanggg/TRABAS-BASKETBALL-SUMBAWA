@@ -31,6 +31,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 alt="Logo TRABAS"
                 className="max-w-full max-h-full object-contain filter drop-shadow-[0_4px_24px_rgba(250,204,21,0.25)]"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  if (!e.currentTarget.src.endsWith('/images/logo_formal_trabas.png')) {
+                    e.currentTarget.src = '/images/logo_formal_trabas.png';
+                  }
+                }}
               />
             </div>
             <span className="text-[11px] text-amber-400 font-semibold uppercase tracking-widest mt-2">

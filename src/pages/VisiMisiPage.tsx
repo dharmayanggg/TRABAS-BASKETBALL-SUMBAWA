@@ -216,6 +216,11 @@ export const VisiMisiPage: React.FC<VisiMisiPageProps> = ({ initialSubTab = 'vis
                     alt="Logo TRABAS"
                     className="max-w-full max-h-full object-contain filter drop-shadow-[0_8px_30px_rgba(250,204,21,0.3)] group-hover:scale-105 transition-transform duration-300"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      if (!e.currentTarget.src.endsWith('/images/logo_formal_trabas.png')) {
+                        e.currentTarget.src = '/images/logo_formal_trabas.png';
+                      }
+                    }}
                   />
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 rounded-2xl backdrop-blur-xs">
@@ -320,6 +325,11 @@ export const VisiMisiPage: React.FC<VisiMisiPageProps> = ({ initialSubTab = 'vis
                 alt="Logo TRABAS Full Resolution"
                 className="max-h-[70vh] max-w-full object-contain filter drop-shadow-[0_10px_40px_rgba(250,204,21,0.25)] select-none"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  if (!e.currentTarget.src.endsWith('/images/logo_formal_trabas.png')) {
+                    e.currentTarget.src = '/images/logo_formal_trabas.png';
+                  }
+                }}
               />
             </div>
           </div>
