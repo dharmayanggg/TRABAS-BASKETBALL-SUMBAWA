@@ -1,6 +1,5 @@
 import React from 'react';
 import { CLUB_CONFIG } from '../data/clubData';
-import { MapPin, Phone, Home, ExternalLink } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (path: string, subTab?: string) => void;
@@ -119,66 +118,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </button>
         </div>
 
-        {/* Basecamp & Training Venues - Centered & Clean on Mobile */}
-        <div className="w-full max-w-2xl my-6 space-y-3">
-          
-          {/* Basecamp */}
-          <div className="p-4 rounded-xl bg-neutral-950/80 border border-neutral-900 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-center sm:text-left">
-            <Home className="w-4 h-4 text-amber-400 shrink-0" />
-            <div className="flex-1 text-center">
-              <span className="text-white font-medium block">
-                Basecamp Kost Santara Sumbawa
-              </span>
-              <span className="text-neutral-400 text-[11px] block mt-0.5">
-                Jl. Manggis 1 (Belakang Tower Gang Mamak), Kel. Uma Sima, Sumbawa Besar
-              </span>
-            </div>
-            <a
-              href={CLUB_CONFIG.basecamp.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1 bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 text-amber-400 text-[11px] font-semibold rounded-md flex items-center gap-1 shrink-0 mt-1 sm:mt-0"
-            >
-              <span>Maps</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
-
-          {/* Practice Venues row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="p-3.5 rounded-xl bg-neutral-950/80 border border-neutral-900 flex flex-col items-center justify-center text-center">
-              <div className="flex items-center gap-1.5 text-white font-medium mb-0.5">
-                <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>SMAN 3 Sumbawa Besar</span>
-              </div>
-              <span className="text-neutral-400 text-[11px]">Rabu Malam (19:00 WITA)</span>
-            </div>
-
-            <div className="p-3.5 rounded-xl bg-neutral-950/80 border border-neutral-900 flex flex-col items-center justify-center text-center">
-              <div className="flex items-center gap-1.5 text-white font-medium mb-0.5">
-                <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>Gallery Arena Pantai Baru</span>
-              </div>
-              <span className="text-neutral-400 text-[11px]">Sabtu Sore (16:00 WITA)</span>
-            </div>
-          </div>
-
-          {/* WhatsApp Direct Hotline */}
-          <div className="pt-2 flex items-center justify-center">
-            <a
-              href={`https://wa.me/${CLUB_CONFIG.whatsappNumberIntl}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 text-amber-400 font-mono text-xs font-semibold transition-colors"
-            >
-              <Phone className="w-4 h-4 text-amber-400" />
-              <span>WhatsApp: {CLUB_CONFIG.whatsappNumber}</span>
-            </a>
-          </div>
-
-        </div>
-
-        {/* Bottom Copyright - Centered, No "Ke Atas" button */}
+        {/* Bottom Copyright - Centered */}
         <div className="w-full pt-6 mt-4 border-t border-neutral-900/80 flex items-center justify-center text-[11px] text-neutral-500">
           <p>© {new Date().getFullYear()} TRABAS (Santara Basketball Sumbawa). Hak Cipta Dilindungi.</p>
         </div>

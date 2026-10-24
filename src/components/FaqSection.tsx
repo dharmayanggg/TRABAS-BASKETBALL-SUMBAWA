@@ -1,9 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { CLUB_CONFIG } from '../data/clubData';
 import {
   ChevronDown,
   HelpCircle,
-  Search,
   MessageCircle,
   ExternalLink,
 } from 'lucide-react';
@@ -17,8 +16,6 @@ interface FaqItem {
 
 export const FaqSection: React.FC = () => {
   const [openIds, setOpenIds] = useState<number[]>([1]); // First question open by default
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('Semua');
 
   const faqs: FaqItem[] = [
     {
@@ -162,18 +159,6 @@ export const FaqSection: React.FC = () => {
     },
   ];
 
-  const categories = ['Semua', 'Umum', 'Latihan', 'Pendaftaran', 'Komunitas'];
-
-  const filteredFaqs = useMemo(() => {
-    return faqs.filter((faq) => {
-      const matchesCategory =
-        selectedCategory === 'Semua' || faq.category === selectedCategory;
-      const matchesSearch =
-        faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        faq.category.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-  }, [faqs, selectedCategory, searchQuery]);
 
   const toggleAccordion = (id: number) => {
     setOpenIds((prev) =>
@@ -213,140 +198,90 @@ export const FaqSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Search and Action Bar */}
-      <div className="bg-neutral-950/70 border border-neutral-850 rounded-2xl p-4 sm:p-5 backdrop-blur-xl mb-6 shadow-xl">
-        <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
-          
-          {/* Search Input */}
-          <div className="relative w-full sm:w-72">
-            <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari pertanyaan / topik..."
-              className="w-full pl-10 pr-4 py-2 bg-neutral-900/90 border border-neutral-800 rounded-xl text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-amber-400 transition-colors"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-white text-xs"
-              >
-                ✕
-              </button>
-            )}
-          </div>
-
-          {/* Category Filter Pills */}
-          <div className="flex items-center gap-1.5 flex-wrap justify-center w-full sm:w-auto">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all ${
-                  selectedCategory === cat
-                    ? 'bg-amber-400 text-black shadow-md shadow-amber-400/20'
-                    : 'bg-neutral-900 text-neutral-400 hover:text-white hover:bg-neutral-850 border border-neutral-800'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Expand / Collapse Actions */}
-          <div className="flex items-center gap-2 self-end sm:self-center">
-            <button
-              onClick={handleExpandAll}
-              className="text-[11px] text-neutral-400 hover:text-amber-400 transition-colors underline decoration-dotted"
-            >
-              Buka Semua
-            </button>
-            <span className="text-neutral-700">•</span>
-            <button
-              onClick={handleCollapseAll}
-              className="text-[11px] text-neutral-400 hover:text-amber-400 transition-colors underline decoration-dotted"
-            >
-              Tutup Semua
-            </button>
-          </div>
-
-        </div>
+      {/* Expand / Collapse Actions */}
+      <div className="flex justify-end items-center gap-2 mb-4 px-1">
+        <button
+          onClick={handleExpandAll}
+          className="text-[11px] text-neutral-400 hover:text-amber-400 transition-colors underline decoration-dotted"
+        >
+          Buka Semua
+        </button>
+        <span className="text-neutral-700">•</span>
+        <button
+          onClick={handleCollapseAll}
+          className="text-[11px] text-neutral-400 hover:text-amber-400 transition-colors underline decoration-dotted"
+        >
+          Tutup Semua
+        </button>
       </div>
 
-      {/* Accordion List */}
+      {/* Accordion List - Langsung Pertanyaan */}
       <div className="space-y-3.5">
-        {filteredFaqs.length > 0 ? (
-          filteredFaqs.map((faq, index) => {
-            const isOpen = openIds.includes(faq.id);
+        {faqs.map((faq) => {
+          const isOpen = openIds.includes(faq.id);
 
-            return (
-              <div
-                key={faq.id}
-                className={`rounded-2xl transition-all duration-200 border overflow-hidden ${
-                  isOpen
-                    ? 'bg-neutral-950/90 border-amber-400/40 shadow-xl shadow-black/50'
-                    : 'bg-neutral-950/50 border-neutral-850/70 hover:border-neutral-750'
-                }`}
+          return (
+            <div
+              key={faq.id}
+              className={`rounded-2xl transition-all duration-200 border overflow-hidden ${
+                isOpen
+                  ? 'bg-neutral-950/90 border-amber-400/40 shadow-xl shadow-black/50'
+                  : 'bg-neutral-950/50 border-neutral-850/70 hover:border-neutral-750'
+              }`}
+            >
+              <button
+                onClick={() => toggleAccordion(faq.id)}
+                className="w-full p-4 sm:p-5 text-left flex items-start sm:items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                aria-expanded={isOpen}
               >
-                <button
-                  onClick={() => toggleAccordion(faq.id)}
-                  className="w-full p-4 sm:p-5 text-left flex items-start sm:items-center justify-between gap-4 cursor-pointer focus:outline-none"
-                  aria-expanded={isOpen}
-                >
-                  <div className="flex items-center gap-3.5">
-                    {/* Index Badge */}
-                    <span
-                      className={`w-7 h-7 shrink-0 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-colors ${
-                        isOpen
-                          ? 'bg-amber-400 text-black shadow-md shadow-amber-400/25'
-                          : 'bg-neutral-900 text-neutral-400 border border-neutral-800'
-                      }`}
-                    >
-                      {String(faq.id).padStart(2, '0')}
-                    </span>
-
-                    <div>
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400/80 mb-0.5 block">
-                        {faq.category}
-                      </span>
-                      <h3
-                        className={`text-sm sm:text-base font-semibold transition-colors ${
-                          isOpen ? 'text-amber-300' : 'text-neutral-200 hover:text-white'
-                        }`}
-                      >
-                        {faq.question}
-                      </h3>
-                    </div>
-                  </div>
-
-                  <div
-                    className={`w-7 h-7 shrink-0 rounded-full flex items-center justify-center border transition-all duration-200 ${
+                <div className="flex items-center gap-3.5">
+                  {/* Index Badge */}
+                  <span
+                    className={`w-7 h-7 shrink-0 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-colors ${
                       isOpen
-                        ? 'border-amber-400 bg-amber-400/10 text-amber-400 rotate-180'
-                        : 'border-neutral-800 bg-neutral-900 text-neutral-400'
+                        ? 'bg-amber-400 text-black shadow-md shadow-amber-400/25'
+                        : 'bg-neutral-900 text-neutral-400 border border-neutral-800'
                     }`}
                   >
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </button>
+                    {String(faq.id).padStart(2, '0')}
+                  </span>
 
-                {/* Answer Content */}
-                {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-neutral-300 leading-relaxed border-t border-neutral-900/80 animate-in fade-in duration-200">
-                    <div className="pt-2 pl-1 sm:pl-10">
-                      {faq.answer}
-                    </div>
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400/80 mb-0.5 block">
+                      {faq.category}
+                    </span>
+                    <h3
+                      className={`text-sm sm:text-base font-semibold transition-colors ${
+                        isOpen ? 'text-amber-300' : 'text-neutral-200 hover:text-white'
+                      }`}
+                    >
+                      {faq.question}
+                    </h3>
                   </div>
-                )}
-              </div>
-            );
-          })
-        ) : (
-          <div className="p-8 text-center bg-neutral-950/40 rounded-2xl border border-neutral-850 text-neutral-400 text-xs">
-            Tidak ada pertanyaan yang sesuai dengan kata kunci "{searchQuery}".
-          </div>
-        )}
+                </div>
+
+                <div
+                  className={`w-7 h-7 shrink-0 rounded-full flex items-center justify-center border transition-all duration-200 ${
+                    isOpen
+                      ? 'border-amber-400 bg-amber-400/10 text-amber-400 rotate-180'
+                      : 'border-neutral-800 bg-neutral-900 text-neutral-400'
+                  }`}
+                >
+                  <ChevronDown className="w-4 h-4" />
+                </div>
+              </button>
+
+              {/* Answer Content */}
+              {isOpen && (
+                <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-neutral-300 leading-relaxed border-t border-neutral-900/80 animate-in fade-in duration-200">
+                  <div className="pt-2 pl-1 sm:pl-10">
+                    {faq.answer}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
       {/* Bottom CTA Card */}
